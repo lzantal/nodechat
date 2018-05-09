@@ -1,0 +1,28 @@
+{
+  "name": "nodechat",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "10.0.0"
+  },
+  "author": "LZAntal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lzantal/nodechat.git"
+  },
+  "keywords": [
+    "node", "socketio", "chat", "websocket"
+  ],
+  "homepage": "https://github.com/lzantal/nodechat",
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0"
+  }
+}
