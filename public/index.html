@@ -5,20 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<p>Welcome to the chat app</p>
 
-<ol id="allmsg">
+<div class="container-fluid h-100">
+<div class="row h-100">
+    <div class="col-sm-4 col-md-3 col-lg-2 bg-info" id="users-list">
+        <h3>Users</h3>
+        <ol id="userlist">
+            <li>Users here</li>
+        </ol>
+    </div>
+    <div class="col" id="msg-panel">
+        <ol id="allmsg" class="">
 
-</ol>
+        </ol>
+    </div>
+</div>
+</div>
 
-<form id="msg-form">
-    <input type="text" name="msg" id="msg" placeholder="enter message">
-    <button id="sendbtn">Send</button>
-</form>
+<div class="container-fluid fixed-bottom">
+<div class="row">
+    <div class="d-xs-none col-sm-4 col-md-3 col-lg-2 bg-info">
+        <!-- ugly hack for now -->
+    </div>
+    <div class="col-xs-10 col-sm-6 col-md-7 col-lg-8 p-0">
+        <input class="form-control" type="text" name="msg" id="msg" placeholder="enter message">
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 p-0">
+        <button class="btn btn-success btn-block" id="sendbtn">Send</button>
+    </div>
+</div>
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>
