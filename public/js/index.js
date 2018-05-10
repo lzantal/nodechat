@@ -10,7 +10,6 @@ socket.on('disconnect', () => {
 
 socket.on('newMessage', (msg) => {
     console.log('New message');
-    //console.table(msg);
     $('#allmsg').append(`<li>${msg.from}: ${msg.text}</li>`);
     $('#msg-panel')[0].scrollTo(0, 100000);
 });
@@ -18,10 +17,16 @@ socket.on('newMessage', (msg) => {
 // handle html and form to send message
 $('#sendbtn').on('click', (e) => {
     e.preventDefault();
+    if ($('#msg').val() === ''){
+        $('#msg').val('').focus();
+        return;
+    }
+    $(this).attr('disabled','disabled');
     socket.emit('createMessage', {
         from: 'user',
         text: $('#msg').val()
     }, (retval) => {
         $('#msg').val('').focus();
+        $(this).removeAttr('disabled');
     });
 });
