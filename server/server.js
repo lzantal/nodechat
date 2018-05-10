@@ -30,13 +30,10 @@ io.on('connection', (socket) => {
     
     socket.broadcast.emit('newMessage', generateMsg('Admin', 'New user joined'));
     
-    socket.on('createMessage', (msg) => {
+    socket.on('createMessage', (msg, callback) => {
         console.log('createMessage', msg);
-        // io.emit('newMessage', {
-        //     from: msg.from,
-        //     text: msg.text,
-        //     createdAt: new Date().getTime()
-        // });
+        io.emit('newMessage', generateMsg(msg.from, msg.text));
+        callback('message created');
         // socket.broadcast.emit('newMessage', {
         //     from: msg.from,
         //     text: msg.text,
