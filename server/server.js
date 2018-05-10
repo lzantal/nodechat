@@ -26,6 +26,18 @@ io.on('connection', (socket) => {
     // socket.emit from Admin, text Welcome to the chat app
     // socket.broadcast.emit from Admin, text New user joined
     
+    socket.emit('newMessage', {
+        from: 'Admin',
+        text: 'Welcome to NodeChat app',
+        createdAt: new Date().getTime()
+    });
+
+    socket.broadcast.emit('newMessage', {
+        from: 'Admin',
+        text: 'New user joined',
+        createdAt: new Date().getTime()
+    })
+
     socket.on('createMessage', (msg) => {
         console.log('createMessage', msg);
         // io.emit('newMessage', {
