@@ -3,6 +3,8 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
+const {generateMsg} = require('./apputils/message');
+
 const publicPath = path.join(__dirname,'../public');
 const port = process.env.PORT || 3000;
 let app = express();
@@ -23,21 +25,11 @@ socket.broadcast => emit the event to everyone but the user who sends it
 // special event and never add anything to the io object
 io.on('connection', (socket) => {
     console.log('New user connected');
-    // socket.emit from Admin, text Welcome to the chat app
-    // socket.broadcast.emit from Admin, text New user joined
     
-    socket.emit('newMessage', {
-        from: 'Admin',
-        text: 'Welcome to NodeChat app',
-        createdAt: new Date().getTime()
-    });
-
-    socket.broadcast.emit('newMessage', {
-        from: 'Admin',
-        text: 'New user joined',
-        createdAt: new Date().getTime()
-    })
-
+    socket.emit('newMessage', generateMsg('Admin', 'Welcome to NodeChat app'));
+    
+    socket.broadcast.emit('newMessage', generateMsg('Admin', 'New user joined'));
+    
     socket.on('createMessage', (msg) => {
         console.log('createMessage', msg);
         // io.emit('newMessage', {
