@@ -10,12 +10,17 @@ socket.on('disconnect', () => {
 
 socket.on('newMessage', (msg) => {
     console.log('New message');
-    console.table(msg);
+    //console.table(msg);
+    $('#allmsg').append(`<li>${msg.from}: ${msg.text}</li>`);
 });
 
-socket.emit('createMessage', {
-    from: 'Laszlo',
-    text: 'Hello'
-}, (returnval) => {
-    console.log(returnval);
+// handle html and form to send message
+$('#msg-form').on('submit', (e) => {
+    e.preventDefault();
+    socket.emit('createMessage', {
+        from: 'user',
+        text: $('#msg').val()
+    }, (retval) => {
+        $('#msg').val('');
+    });
 });
