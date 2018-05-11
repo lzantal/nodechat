@@ -6,7 +6,7 @@ describe('generateMsg', () => {
         let from = 'Laszlo';
         let text = 'Running test on generateMsg';
         let res = generateMsg(from, text);
-        expect(res).toInclude({from, text});
-        expect(res.createdAt).toBeA('number');
-    })
+        expect(res).toMatchObject({from, text});
+        expect(typeof res.createdAt).toBe('number');
+    });
 });
